@@ -1,0 +1,40 @@
+# Ejecutables
+nomina
+*.out
+*.exe
+
+# Archivos objeto
+*.o
+
+# Archivos generados por LEX/YACC
+lex.yy.c
+y.tab.c
+y.tab.h
+
+# Archivos de compilación
+*.a
+*.so
+*.dylib
+
+# Archivos de depuración
+*.dSYM/
+*.su
+
+# Editores
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+*.bak
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+temp/
