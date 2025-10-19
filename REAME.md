@@ -19,6 +19,15 @@ Sistema de gestión de nómina desarrollado con LEX y YACC que permite:
 - **Docker**: Containerización completa
 - **Portable**: Scripts de construcción automatizados
 
+## 📚 Tecnologías
+
+- **LEX/Flex**: Generador de analizadores léxicos
+- **YACC/Bison**: Generador de analizadores sintácticos
+- **C/GCC**: Lenguaje y compilador
+- **Docker**: Containerización
+- **Make**: Automatización de build
+- **Bash**: Scripts de construcción
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -27,7 +36,6 @@ nomina-compiler/
 ├── nomina.y            # Analizador sintáctico (YACC)
 ├── Dockerfile          # Configuración Docker
 ├── Makefile            # Automatización de build
-├── build.sh            # Script de construcción bash
 ├── test_nomina.txt     # Archivo de pruebas
 ├── .gitignore          # Archivos ignorados por git
 └── README.md           # Este archivo
@@ -77,29 +85,7 @@ make clean
 make help
 ```
 
-### Opción 2: Usando build.sh
-
-```bash
-# Dar permisos de ejecución
-chmod +x build.sh
-
-# Modo interactivo
-./build.sh
-
-# Compilar directamente
-./build.sh build
-
-# Compilar y ejecutar
-./build.sh run
-
-# Ejecutar pruebas
-./build.sh test
-
-# Todo (compilar + test + Docker)
-./build.sh all tuusuario
-```
-
-### Opción 3: Manual
+### Opción 2: Manual
 
 ```bash
 # 1. Generar parser
@@ -277,107 +263,3 @@ echo "MOSTRAR TOTAL" >> mis_pruebas.txt
 
 ./nomina < mis_pruebas.txt
 ```
-
-## 🐛 Troubleshooting
-
-### Error: "lex: command not found"
-```bash
-sudo apt-get install flex
-```
-
-### Error: "yacc: command not found"
-```bash
-sudo apt-get install bison
-```
-
-### Error: "y.tab.h: No such file"
-Asegúrate de ejecutar yacc con la opción `-d`:
-```bash
-yacc -d nomina.y
-```
-
-### Error de Docker en Mac
-Edita `~/.docker/config.json` y ajusta `credsStore`.
-
-## 📚 Tecnologías
-
-- **LEX/Flex**: Generador de analizadores léxicos
-- **YACC/Bison**: Generador de analizadores sintácticos
-- **C/GCC**: Lenguaje y compilador
-- **Docker**: Containerización
-- **Make**: Automatización de build
-- **Bash**: Scripts de construcción
-
-## 🎓 Contexto Académico
-
-### Rúbrica del Parcial 1
-
-| Criterio | Puntos | Estado |
-|----------|--------|--------|
-| Intérprete con LEX y YACC | 60 pts | ✅ |
-| Repositorio GitHub privado | 10 pts | ✅ |
-| Dockerfile funcional | 20 pts | ✅ |
-| Imagen en Docker Hub | 10 pts | ✅ |
-| **TOTAL** | **100 pts** | ✅ |
-
-### Características Implementadas
-
-✅ Analizador léxico completo (LEX)  
-✅ Analizador sintáctico robusto (YACC)  
-✅ Manejo de errores  
-✅ Estructura de datos dinámica  
-✅ Lógica de negocio compleja (horas extras)  
-✅ Múltiples comandos y operaciones  
-✅ Containerización Docker  
-✅ Scripts de automatización  
-✅ Documentación completa  
-
-## 🔄 Git Workflow
-
-```bash
-# Inicializar repositorio
-git init
-
-# Agregar archivos
-git add .
-
-# Commit inicial
-git commit -m "feat: Sistema de nómina con LEX y YACC"
-
-# Conectar con GitHub
-git remote add origin https://github.com/tuusuario/nomina-compiler.git
-
-# Push
-git branch -M main
-git push -u origin main
-```
-
-## 📄 Licencia
-
-Este proyecto es parte de un ejercicio académico para el curso de Diseño de Compiladores.
-
-## 👤 Autor
-
-**[Tu Nombre]**
-- Email: tu_email@example.com
-- GitHub: [@tuusuario](https://github.com/tuusuario)
-- Curso: Diseño de Compiladores
-
-## 🙏 Agradecimientos
-
-- Prof. Adolfo Centeno
-- Recursos: [Dragon Book](https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools)
-- Documentación de [GNU Bison](https://www.gnu.org/software/bison/)
-- Documentación de [Flex](https://github.com/westes/flex)
-
-## 📞 Soporte
-
-Si encuentras algún problema:
-1. Revisa la sección de Troubleshooting
-2. Verifica que todas las dependencias estén instaladas
-3. Consulta los ejemplos en `test_nomina.txt`
-4. Abre un issue en GitHub
-
----
-
-**⭐ Si este proyecto te fue útil, no olvides darle una estrella en GitHub!**
