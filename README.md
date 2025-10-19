@@ -112,9 +112,6 @@ gcc y.tab.o lex.yy.o -o nomina -lm
 # Usando Makefile
 make docker-build
 
-# Usando build.sh
-./build.sh docker tuusuario
-
 # Manual
 docker build -t tuusuario/nomina-compiler .
 ```

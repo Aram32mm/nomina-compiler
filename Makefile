@@ -17,7 +17,7 @@ YACC_HEADER = y.tab.h
 OBJECTS = y.tab.o lex.yy.o
 
 # Docker
-DOCKER_USER = josearam12
+DOCKER_USER = josearam12 # Reemplazar con tu usuario de Docker Hub
 DOCKER_IMAGE = nomina-compiler
 DOCKER_TAG = latest
 
