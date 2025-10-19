@@ -17,7 +17,7 @@ YACC_HEADER = y.tab.h
 OBJECTS = y.tab.o lex.yy.o
 
 # Docker
-DOCKER_USER = tuusuario
+DOCKER_USER = josearam12
 DOCKER_IMAGE = nomina-compiler
 DOCKER_TAG = latest
 
@@ -89,12 +89,22 @@ docker-test:
 	@echo "🧪 Ejecutando pruebas en Docker..."
 	docker run -i $(DOCKER_USER)/$(DOCKER_IMAGE):$(DOCKER_TAG) < test_nomina.txt
 
-# Docker: subir a Docker Hub
-docker-push: docker-build
-	@echo "📤 Subiendo imagen a Docker Hub..."
+# Docker: subir a Docker Hub (multi-plataforma)
+docker-push: docker-buildx
+	@echo "📤 Construyendo y subiendo imagen multi-plataforma..."
 	docker login
-	docker push $(DOCKER_USER)/$(DOCKER_IMAGE):$(DOCKER_TAG)
-	@echo "✅ Imagen subida a Docker Hub"
+	docker buildx build \
+		--platform linux/amd64,linux/arm64 \
+		-t $(DOCKER_USER)/$(DOCKER_IMAGE):$(DOCKER_TAG) \
+		--push \
+		.
+	@echo "✅ Imagen multi-plataforma subida a Docker Hub"
+
+# Docker: configurar buildx
+docker-buildx:
+	@echo "🐳 Configurando builder multi-plataforma..."
+	-docker buildx create --name multiplatform --use 2>/dev/null || docker buildx use multiplatform
+	@echo "✅ Builder configurado"
 
 # Docker: listar imágenes
 docker-images:
@@ -103,9 +113,10 @@ docker-images:
 
 # Docker: eliminar imagen
 docker-clean:
-	@echo "🧹 Eliminando imagen Docker..."
-	docker rmi $(DOCKER_USER)/$(DOCKER_IMAGE):$(DOCKER_TAG)
-
+	@echo "🧹 Eliminando contenedores y imagen Docker..."
+	docker rm -f $(docker ps -aq 2>/dev/null) 2>/dev/null || true
+	docker rmi -f $(DOCKER_USER)/$(DOCKER_IMAGE):$(DOCKER_TAG) 2>/dev/null || true
+	@echo "✅ Limpieza completa"
 # Mostrar ayuda
 help:
 	@echo "════════════════════════════════════════════════════════"
